@@ -7,6 +7,7 @@ class WeatherController {
     this.giphyID = 'ewZH7xWXlpDHw08WN9t4DLdihDsov28K';
     WeatherView.render()
     this.getCats()
+    this.getWeather()
   };
   
   getCats() {
@@ -17,6 +18,20 @@ class WeatherController {
       })
       .then(function(response) {
         img.src = response.data.images.original.url;
+      })
+      .catch(function () {
+        console.log("Promise Rejected");
+      });
+  }
+  
+  getWeather() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?apiKey=${this.weatherID}&q=miami&units=metric`, {mode: 'cors'})
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(response) {
+       const object = response;
+       console.log(object.main.temp);
       })
       .catch(function () {
         console.log("Promise Rejected");
