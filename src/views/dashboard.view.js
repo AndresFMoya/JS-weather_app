@@ -3,7 +3,7 @@ class DashboardView {
     const html = `
       <div class="container">
         <div class="row mt-3">
-          <main-app>Hello World!</main-app>
+          <main-app></main-app>
         </div>
       </div>`;
 
