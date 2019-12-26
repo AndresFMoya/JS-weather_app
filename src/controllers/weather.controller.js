@@ -27,7 +27,11 @@ class WeatherController {
       .then((response) => {
         const object = response;
         document.getElementById('result').innerHTML = `<h1>${object.main.temp} </h1>`;
-        this.getImg('weather');
+        if (object.main.temp < 20) {
+          this.getImg('cold weather');
+        } else {
+          this.getImg('hot Weather');
+        }
         this.showUnitLabel();
       })
       .catch(() => {
