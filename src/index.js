@@ -1,3 +1,4 @@
+import './scss/style.scss';
 import Framework from './framework';
 
 const app = () => {

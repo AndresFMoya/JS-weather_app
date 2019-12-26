@@ -13,7 +13,7 @@ class WeatherView {
      
      <button class="btn btn-success" id="Send">How's the weather?</button></br>
      
-     <div class="results row" >
+     <div class="results col-sm-8 m-auto" >
        <label for="" id="result" style="margin: auto "></label>
        <label for="" id="unit"></label></br>
        </div>

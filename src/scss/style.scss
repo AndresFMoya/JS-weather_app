@@ -1,10 +1,8 @@
 @import '~bootstrap';
 
 #message {
-  width: 80%;
   height: 36px;
-  position: fixed;
-  margin: auto;
+  margin: 10px;
   top: 2px;
   left: 10%;
   border-radius: 4px;
@@ -13,3 +11,4 @@
   font-weight: bold;
   line-height: 36px;
 }
+
