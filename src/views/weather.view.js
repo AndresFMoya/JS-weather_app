@@ -17,7 +17,9 @@ class WeatherView {
        <label for="" id="result" style="margin: auto "></label>
        <label for="" id="unit"></label></br>
        </div>
-       <img src="" alt="" id="img"></br>
+       <div class="w-100 align-content-center">
+       <img class = "m-5" src="" alt="" id="img"></br>
+       </div>
      </div>
       `;
     document.getElementsByTagName('main-app')[0].innerHTML = html;
