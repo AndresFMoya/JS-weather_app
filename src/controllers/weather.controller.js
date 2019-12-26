@@ -27,7 +27,7 @@ class WeatherController {
       .then((response) => {
         const object = response;
         document.getElementById('result').innerHTML = `<h1>${object.main.temp} </h1>`;
-        if ((object.main.temp < 20 && units === 'metric') || (object.main.temp<68 && units === 'imperial')) {
+        if ((object.main.temp < 20 && units === 'metric') || (object.main.temp < 68 && units === 'imperial')) {
           this.getImg('cold weather');
         } else {
           this.getImg('hot Weather');
