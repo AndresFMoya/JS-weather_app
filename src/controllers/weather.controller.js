@@ -1,42 +1,64 @@
-import WeatherModel from "../models/weather.model";
-import WeatherView from "../views/weather.view";
+import WeatherView from '../views/weather.view';
 
 class WeatherController {
   constructor() {
     this.weatherID = '1316827060b8f7f20dcad45f0a14d553';
     this.giphyID = 'ewZH7xWXlpDHw08WN9t4DLdihDsov28K';
-    WeatherView.render()
-    this.getCats()
-    this.getWeather()
-  };
-  
-  getCats() {
+    WeatherView.render();
+    this.render();
+  }
+
+  getImg(topic) {
     const img = document.getElementById('img');
-    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${this.giphyID}&s=cats`, {mode: 'cors'})
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(response) {
+    fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${this.giphyID}&s=${topic}`, { mode: 'cors' })
+      .then((response) => response.json())
+      .then((response) => {
         img.src = response.data.images.original.url;
       })
-      .catch(function () {
-        console.log("Promise Rejected");
+      .catch(() => {
       });
   }
-  
+
   getWeather() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?apiKey=${this.weatherID}&q=miami&units=metric`, {mode: 'cors'})
-      .then(function(response) {
-        return response.json();
+    const location = document.getElementById('location').value;
+    const units = document.getElementById('units').value;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?apiKey=${this.weatherID}&q=${location}&units=${units}`, { mode: 'cors' })
+      .then((response) => response.json())
+      .then((response) => {
+        const object = response;
+        document.getElementById('result').innerHTML = `<h1>${object.main.temp} </h1>`;
+        this.getImg('weather');
+        this.showUnitLabel();
       })
-      .then(function(response) {
-       const object = response;
-       console.log(object.main.temp);
-      })
-      .catch(function () {
-        console.log("Promise Rejected");
+      .catch(() => {
+        this.sendMessage('City not found. Try again!');
       });
+  }
+
+  clearForm() {
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('unit').innerHTML = '';
+    document.getElementById('message').innerHTML = '';
+  }
+
+  render() {
+    document.getElementById('Send').addEventListener('click', event => {
+      this.clearForm();
+      this.getWeather();
+    });
+  }
+
+  showUnitLabel() {
+    if (document.getElementById('units').value === 'metric') {
+      document.getElementById('unit').innerHTML = '<h1> °Celsius </h1>';
+    } else {
+      document.getElementById('unit').innerHTML = '<h1> °Fahrenheit </h1>';
+    }
+  }
+
+  sendMessage(msg) {
+    document.getElementById('message').innerHTML = `<p>${msg}</p>`;
   }
 }
 
-export default WeatherController
+export default WeatherController;

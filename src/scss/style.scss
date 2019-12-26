@@ -1,0 +1,15 @@
+@import '~bootstrap';
+
+#message {
+  width: 80%;
+  height: 36px;
+  position: fixed;
+  margin: auto;
+  top: 2px;
+  left: 10%;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-weight: bold;
+  line-height: 36px;
+}

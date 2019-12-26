@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          'style-loader',
+          'scss-loader',
           'css-loader',
           {
             loader: 'postcss-loader', // Run postcss actions

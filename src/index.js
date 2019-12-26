@@ -4,7 +4,4 @@ const app = () => {
   Framework.activateRoute('index');
 };
 
-
-
-
 app();
