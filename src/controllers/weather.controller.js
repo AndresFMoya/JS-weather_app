@@ -22,6 +22,7 @@ class WeatherController {
   getWeather() {
     const location = document.getElementById('location').value;
     const units = document.getElementById('units').value;
+    this.sendMessage('Loading...');
     fetch(`https://api.openweathermap.org/data/2.5/weather?apiKey=${this.weatherID}&q=${location}&units=${units}`, { mode: 'cors' })
       .then((response) => response.json())
       .then((response) => {
@@ -33,6 +34,7 @@ class WeatherController {
           this.getImg('hot Weather');
         }
         this.showUnitLabel();
+        this.sendMessage('');
       })
       .catch(() => {
         this.sendMessage('City not found. Try again!');
