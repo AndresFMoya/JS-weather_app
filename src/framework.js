@@ -1,10 +1,6 @@
 import DashboardController from './controllers/dashboard.controller';
 
 class Framework {
-  /**
-   * Select the route handler and call App#render.
-   * @param {string} routeName
-   */
   static activateRoute(routeName) {
     const handlers = {
       index: { controller: DashboardController },
