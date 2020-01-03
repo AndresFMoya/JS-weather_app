@@ -21,7 +21,7 @@ class WeatherController {
 
   getWeather() {
     const location = document.getElementById('location').value;
-    const units = document.getElementById('units').value;
+    const units = this.getUnits();
     this.sendMessage('Loading...');
     fetch(`https://api.openweathermap.org/data/2.5/weather?apiKey=${this.weatherID}&q=${location}&units=${units}`, { mode: 'cors' })
       .then((response) => response.json())
@@ -33,12 +33,29 @@ class WeatherController {
         } else {
           this.getImg('hot Weather');
         }
-        this.showUnitLabel();
         this.sendMessage('');
       })
       .catch(() => {
         this.sendMessage('City not found. Try again!');
       });
+  }
+
+  getUnits() {
+    let units = 'metric';
+    const toggle = document.getElementById('unit-toggle').checked;
+    if (toggle === true) {
+      units = 'imperial';
+    } else {
+      units = 'metric';
+    }
+
+    if (units === 'metric') {
+      document.getElementById('unit').innerHTML = '<h1> °Celsius </h1>';
+    } else {
+      document.getElementById('unit').innerHTML = '<h1> °Fahrenheit </h1>';
+    }
+
+    return (units);
   }
 
   clearForm() {
@@ -52,14 +69,12 @@ class WeatherController {
       this.clearForm();
       this.getWeather();
     });
-  }
 
-  showUnitLabel() {
-    if (document.getElementById('units').value === 'metric') {
-      document.getElementById('unit').innerHTML = '<h1> °Celsius </h1>';
-    } else {
-      document.getElementById('unit').innerHTML = '<h1> °Fahrenheit </h1>';
-    }
+    document.getElementById('unit-toggle').addEventListener('click', ev => {
+      if (document.getElementById('location').value !== '') {
+        this.getWeather();
+      }
+    });
   }
 
   sendMessage(msg) {

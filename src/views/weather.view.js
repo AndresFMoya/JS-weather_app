@@ -1,15 +1,14 @@
 class WeatherView {
   static render() {
     const html = `
-
      <div id="message"></div>
+     
      <label for="location">Enter City Name</label>
      <input type="text" id="location">
      
-     <select name="" id="units">
-        <option value="metric">metric</option>
-        <option value="imperial">imperial</option>
-     </select>
+     <label>Metric</label>
+     <label class="toggle"><input id="unit-toggle" type="checkbox"><span class="slider round"></span></label>
+     <label>Imperial</label>
      
      <button class="btn btn-success" id="Send">How's the weather?</button></br>
      
